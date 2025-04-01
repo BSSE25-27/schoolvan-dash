@@ -16,4 +16,9 @@ class Driver extends Model
         "DriverPermit",
     ];
 
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
+
 }
