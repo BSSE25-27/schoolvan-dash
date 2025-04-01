@@ -11,6 +11,7 @@ use App\Http\Controllers\VanController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::fallback (function(){return redirect('/dashboard');});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
