@@ -7,6 +7,7 @@ use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ParentalController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\VanController;
+use App\Http\Controllers\TripController;
 
 // Route::get('/', function () {
 //     return view('welcome');

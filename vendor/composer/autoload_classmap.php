@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\TripController' => $baseDir . '/app/Http/Controllers/TripController.php',
     'App\\Http\\Controllers\\VanController' => $baseDir . '/app/Http/Controllers/VanController.php',
+    'App\\Http\\Controllers\\api\\ParentalController' => $baseDir . '/app/Http/Controllers/api/ParentalController.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
     'App\\Models\\Child' => $baseDir . '/app/Models/Child.php',

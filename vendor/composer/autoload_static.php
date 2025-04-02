@@ -554,6 +554,7 @@ class ComposerStaticInitd6c73ea5dadcd971050eeb806511e47d
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\TripController' => __DIR__ . '/../..' . '/app/Http/Controllers/TripController.php',
         'App\\Http\\Controllers\\VanController' => __DIR__ . '/../..' . '/app/Http/Controllers/VanController.php',
+        'App\\Http\\Controllers\\api\\ParentalController' => __DIR__ . '/../..' . '/app/Http/Controllers/api/ParentalController.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\Child' => __DIR__ . '/../..' . '/app/Models/Child.php',

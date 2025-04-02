@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Trip;
 
 class TripController extends Controller
 {
@@ -10,6 +11,8 @@ class TripController extends Controller
     public function index()
     {
         // Read - Display a list of items
+        $trips = Trip::latest()->paginate(10);
+        return view('trips.index', compact('trips'));
     }
     public function create()
     {
