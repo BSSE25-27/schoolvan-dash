@@ -13,6 +13,12 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <strong>Phone Number:</strong> {{ $operator->PhoneNumber }}
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Email:</strong> {{ $operator->Email }}
+                                </div>
+                                <div class="mb-3">
                                     <strong>Operator ID:</strong> {{ $operator->VanOperatorID }}
                                 </div>
                                 <div class="mb-3">

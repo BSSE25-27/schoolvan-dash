@@ -29,7 +29,8 @@ class OperatorController extends Controller
     {
         $request->validate([
             'VanOperatorName' => 'required|string|max:255',
-            
+            'PhoneNumber' => 'required|string|max:20',
+            'Email' => 'required|email|unique:parentals,Email',
         ]);
 
         Operator::create($request->all());
@@ -61,6 +62,8 @@ class OperatorController extends Controller
     {
         $request->validate([
             'VanOperatorName' => 'required|string|max:255',
+            'PhoneNumber' => 'required|string|max:20',
+            'Email' => 'required|email|unique:parentals,Email',
             
         ]);
 

@@ -13,5 +13,7 @@ class Operator extends Model
     protected $fillable = [
         "VanOperatorID",
         "VanOperatorName",
+        "PhoneNumber",
+        "Email"
     ];
 }

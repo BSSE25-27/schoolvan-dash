@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id("VanOperatorID");
             $table->timestamps();
             $table->string("VanOperatorName");
+            $table->string("PhoneNumber");
+            $table->string("Email")-> unique();
 
         });
     }

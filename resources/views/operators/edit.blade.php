@@ -24,6 +24,30 @@
                                             </span>
                                         @enderror
                                     </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="OperatorName">PhoneNumber</label>
+                                        <input type="text"
+                                            class="form-control @error('OperatorName') is-invalid @enderror"
+                                            id="OperatorName" name="PhoneNumber"
+                                            value="{{ old('OperatorName', $operator->PhoneNumber) }}" required>
+                                        @error('OperatorName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="OperatorName">Email</label>
+                                        <input type="text"
+                                            class="form-control @error('OperatorName') is-invalid @enderror"
+                                            id="OperatorName" name="Email"
+                                            value="{{ old('OperatorName', $operator->Email) }}" required>
+                                        @error('OperatorName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
 
                                     <div class="gap-2 d-grid d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-primary">Update Operator</button>

@@ -21,6 +21,8 @@
                                         <tr>
                                             <th>VanOperatorID</th>
                                             <th>VanOperatorName</th>
+                                            <th>PhoneNumber</th>
+                                            <th>Email</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -29,6 +31,8 @@
                                             <tr>
                                                 <td>{{ $operator->VanOperatorID }}</td>
                                                 <td>{{ $operator->VanOperatorName }}</td>
+                                                <td>{{ $operator->PhoneNumber }}</td>
+                                                <td>{{ $operator->Email }}</td>
                                                 <td>
                                                     <a href="{{ route('operators.show', $operator->VanOperatorID) }}"
                                                         class="btn btn-info btn-sm">View</a>

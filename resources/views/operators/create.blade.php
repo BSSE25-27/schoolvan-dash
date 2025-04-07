@@ -16,6 +16,14 @@
                                         <input type="text"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 @error('OperatorName') is-invalid @enderror"
                                             id="OperatorName" name="VanOperatorName" value="{{ old('OperatorName') }}" required>
+                                        <label for="VanOperatorName">PhoneNumber</label>
+                                        <input type="text"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 @error('OperatorName') is-invalid @enderror"
+                                            id="OperatorName" name="PhoneNumber" value="{{ old('OperatorName') }}" required>
+                                        <label for="VanOperatorName">Email</label>
+                                        <input type="text"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 @error('OperatorName') is-invalid @enderror"
+                                            id="OperatorName" name="Email" value="{{ old('OperatorName') }}" required>
                                         @error('OperatorName')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
