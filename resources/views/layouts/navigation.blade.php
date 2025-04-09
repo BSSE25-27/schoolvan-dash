@@ -5,7 +5,7 @@
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="{{ route('dashboard') }}" class="text-nowrap logo-img">
                 <div class="d-flex justify-content-center">
-                    <img src="logo.png" alt="Logo" class="mx-auto">
+                    <img src={{ asset('logo.png') }} alt="Logo" class="mx-auto">
                 </div>
             </a>
             <div class="cursor-pointer close-btn d-xl-none d-block sidebartoggler" id="sidebarCollapse">

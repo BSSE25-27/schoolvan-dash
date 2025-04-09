@@ -622,6 +622,8 @@ namespace App\Models {
     /**
      * App\Models\Operator
      *
+     * @property string $Email
+     * @property string $PhoneNumber
      * @property string $VanOperatorName
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
@@ -630,6 +632,8 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereVanoperatorname($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator wherePhonenumber($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereEmail($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator query()
@@ -1244,9 +1248,23 @@ namespace App\Models {
      *
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
+     * @property array|null $van_location
+     * @property string|null $destination_name
+     * @property array|null $destination
+     * @property array|null $origin
+     * @property boolean $is_complete
+     * @property boolean $is_started
+     * @property int|null $driver_DriverID
      * @property int $id
      * @property-read \App\Models\Driver $driver
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDriverDriverid($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereIsStarted($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereIsComplete($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereOrigin($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDestination($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDestinationName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereVanLocation($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip newModelQuery()
