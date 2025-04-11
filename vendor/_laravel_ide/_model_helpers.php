@@ -320,6 +320,7 @@ namespace App\Models {
      * @property int $DriverID
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Trip> $trips
      * @property-read int|null $trips_count
+     * @property-read \App\Models\Van $van
      * @method static \Illuminate\Database\Eloquent\Builder<Driver>|Driver whereDriverid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Driver>|Driver whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Driver>|Driver whereUpdatedAt($value)
@@ -628,6 +629,7 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property int $VanOperatorID
+     * @property-read \App\Models\Van $van
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereVanoperatorid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Operator>|Operator whereUpdatedAt($value)
@@ -1881,18 +1883,18 @@ namespace App\Models {
      *
      * @property int $DriverID
      * @property int $VanOperatorID
-     * @property float $Latitude
-     * @property float $Longitude
+     * @property int $VanCapacity
      * @property string $NumberPlate
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property int $VanID
+     * @property-read \App\Models\Driver $driver
+     * @property-read \App\Models\Operator $operator
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereVanid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereNumberplate($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereLongitude($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereLatitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereVancapacity($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereVanoperatorid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van whereDriverid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Van>|Van newModelQuery()

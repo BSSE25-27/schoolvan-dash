@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id("VanID");
             $table->timestamps();
             $table->string("NumberPlate");
-            $table->decimal("Longitude");
-            $table->decimal("Latitude");
-
+            $table->integer("VanCapacity");
+            
             $table->unsignedBigInteger("VanOperatorID");
             $table->foreign("VanOperatorID")
                   ->references("VanOperatorID")

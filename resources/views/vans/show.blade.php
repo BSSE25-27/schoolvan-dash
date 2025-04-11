@@ -5,33 +5,41 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">Driver Details</div>
+                            <div class="card-header">Van Assignment Details</div>
 
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <h5 class="card-title">{{ $driver->DriverName }}</h5>
+                                    <h5 class="card-title">{{ $van->VanID }}</h5>
                                 </div>
 
                                 <div class="mb-3">
-                                    <strong>Driver ID:</strong> {{ $driver->DriverID }}
+                                    <strong>NumberPlate:</strong> {{ $van->NumberPlate }}
                                 </div>
 
                                 <div class="mb-3">
-                                    <strong>Driver Permit:</strong> {{ $driver->DriverPermit }}
+                                    <strong>VanCapacity:</strong> {{ $van->VanCapacity }}
                                 </div>
 
                                 <div class="mb-3">
-                                    <strong>Created At:</strong> {{ $driver->created_at->format('M d, Y H:i') }}
+                                    <strong>VanOperatorName:</strong> {{ $van->operator->VanOperatorName ?? 'N/A' }}
                                 </div>
 
                                 <div class="mb-3">
-                                    <strong>Last Updated:</strong> {{ $driver->updated_at->format('M d, Y H:i') }}
+                                    <strong>DriverName:</strong> {{ $van->driver->DriverName ?? 'N/A' }}
                                 </div>
+
+                                {{-- <div class="mb-3">
+                                    <strong>Created At:</strong> {{ $van->created_at->format('M d, Y H:i') }}
+                                </div>
+
+                                <div class="mb-3">
+                                    <strong>Last Updated:</strong> {{ $van->updated_at->format('M d, Y H:i') }}
+                                </div> --}}
 
                                 <div class="gap-2 d-grid d-md-flex justify-content-md-end">
-                                    <a href="{{ route('drivers.edit', $driver->DriverID) }}"
+                                    <a href="{{ route('vans.edit', $van->VanID) }}"
                                         class="btn btn-primary">Edit</a>
-                                    <a href="{{ route('drivers.index') }}" class="btn btn-secondary">Back to List</a>
+                                    <a href="{{ route('vans.index') }}" class="btn btn-secondary">Back to List</a>
                                 </div>
                             </div>
                         </div>

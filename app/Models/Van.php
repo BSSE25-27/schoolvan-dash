@@ -7,12 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class Van extends Model
 {
     //
+    protected $primaryKey = 'VanID'; 
     protected $fillable =[
         "VanID",
         "NumberPlate",
-        "Longitude",
-        "Latitude",
+        "VanCapacity",
         "VanOperatorID",
         "DriverID",
     ];
+
+    public function driver()
+{
+    return $this->belongsTo(Driver::class, 'DriverID', 'DriverID');
+}
+
+    public function operator()
+    {
+        return $this->belongsTo(Operator::class, 'VanOperatorID', 'VanOperatorID');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'VanID';
+    }
 }

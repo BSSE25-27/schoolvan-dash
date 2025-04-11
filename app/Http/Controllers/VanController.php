@@ -4,93 +4,87 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Van;
+use App\Models\Driver;
+use App\Models\Operator;
 
 class VanController extends Controller
 {
-    //
+    // List vans with related driver and operator info
     public function index()
     {
-        $vans = Van::latest()->paginate(10);
+        $vans = Van::with(['driver', 'operator'])->latest()->paginate(10);
         return view('vans.index', compact('vans'));
     }
 
     // Show the form for creating a new van
     public function create()
     {
-        // You can return a view here if needed
-        return view('vans.create');
+        $drivers = Driver::all();
+        $operators = Operator::all();
+        return view('vans.create', compact('drivers', 'operators'));
     }
 
     // Store a newly created van in the database
+    // VanController.php
+
     public function store(Request $request)
     {
-        // Validate input
         $validated = $request->validate([
             'NumberPlate' => 'required|string|max:255',
-            'Longitude' => 'required|numeric',
-            'Latitude' => 'required|numeric',
-            'VanOperatorID' => 'required|exists:vanoperators,VanOperatorID',
+            'VanCapacity' => 'required|integer',
+            'VanOperatorID' => 'required|exists:operators,VanOperatorID',
             'DriverID' => 'required|exists:drivers,DriverID',
         ]);
 
-        // Create the new van
-        $van = Van::create([
-            'NumberPlate' => $validated['NumberPlate'],
-            'Longitude' => $validated['Longitude'],
-            'Latitude' => $validated['Latitude'],
-            'VanOperatorID' => $validated['VanOperatorID'],
-            'DriverID' => $validated['DriverID'],
-        ]);
+        // Check if driver is already assigned
+        if (Van::where('DriverID', $validated['DriverID'])->exists()) {
+            return back()->withErrors(['DriverID' => 'This driver is already assigned to a van'])->withInput();
+        }
 
-        return response()->json(['message' => 'Van created successfully', 'van' => $van], 201);
+        // Check if operator is already assigned
+        if (Van::where('VanOperatorID', $validated['VanOperatorID'])->exists()) {
+            return back()->withErrors(['VanOperatorID' => 'This operator is already assigned to a van'])->withInput();
+        }
+
+        Van::create($validated);
+
+        return redirect()->route('vans.index')->with('success', 'Van created successfully');
     }
 
-    // Display the specified van
-    public function show($id)
+    // Show a specific van
+    public function show(Van $van)
     {
-        $van = Van::findOrFail($id); // Retrieves van by id
-        return response()->json($van);
+        $van->load(['driver', 'operator']);
+        return view('vans.show', compact('van'));
     }
 
-    // Show the form for editing the specified van
-    public function edit($id)
+    // Show the form for editing a specific van
+    public function edit(Van $van)
     {
-        // You can return a view here if needed
-        $van = Van::findOrFail($id);
-        return view('vans.edit', compact('van'));
+        $drivers = Driver::all();
+        $operators = Operator::all();
+        return view('vans.edit', compact('van', 'drivers', 'operators'));
     }
 
-    // Update the specified van in the database
-    public function update(Request $request, $id)
+    // Update a specific van
+    public function update(Request $request, Van $van)
     {
-        // Validate input
         $validated = $request->validate([
             'NumberPlate' => 'required|string|max:255',
-            'Longitude' => 'required|numeric',
-            'Latitude' => 'required|numeric',
-            'VanOperatorID' => 'required|exists:vanoperators,VanOperatorID',
+            'VanCapacity' => 'required|integer',
+            'VanOperatorID' => 'required|exists:operators,VanOperatorID',
             'DriverID' => 'required|exists:drivers,DriverID',
         ]);
 
-        // Find the van and update it
-        $van = Van::findOrFail($id);
-        $van->update([
-            'NumberPlate' => $validated['NumberPlate'],
-            'Longitude' => $validated['Longitude'],
-            'Latitude' => $validated['Latitude'],
-            'VanOperatorID' => $validated['VanOperatorID'],
-            'DriverID' => $validated['DriverID'],
-        ]);
+        $van->update($validated);
 
-        return response()->json(['message' => 'Van updated successfully', 'van' => $van]);
+        return redirect()->route('vans.index')->with('success', 'Van updated successfully');
     }
 
-    // Remove the specified van from the database
-    public function destroy($id)
+    // Delete a van
+    public function destroy(Van $van)
     {
-        $van = Van::findOrFail($id);
         $van->delete();
-
-        return response()->json(['message' => 'Van deleted successfully']);
+        return redirect()->route('vans.index')->with('success', 'Van deleted successfully');
     }
 }

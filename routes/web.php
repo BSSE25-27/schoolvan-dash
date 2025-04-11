@@ -8,15 +8,21 @@ use App\Http\Controllers\ParentalController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\VanController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\DashboardController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 Route::fallback (function(){return redirect('/dashboard');});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,7 +44,7 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('all-vans', VanController::class)
      ->names('vans')
-     ->parameters(['all-vans' => 'vans']);
+     ->parameters(['all-vans' => 'van']);
     
     Route::resource('all-trips', TripController::class)
      ->names('trips')

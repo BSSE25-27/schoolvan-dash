@@ -14,18 +14,16 @@
                                     </div>
                                 @endif
 
-                                <a href="{{ route('vans.create') }}" class="mb-3 btn btn-primary">Register Van</a>
+                                <a href="{{ route('vans.create') }}" class="mb-3 btn btn-primary">Assign Van</a>
 
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>VanID</th>
+                                            <th>Number Plate</th>
                                             <th>VanCapacity</th>
-                                            <th>NumberPlate</th>
-                                            <th>Longitude</th>
-                                            <th>Latitude</th>
-                                            <th>VanOperator</th>
-                                            <th>Driver</th>
+                                            <th>VanOperatorName</th>
+                                            <th>DriverName</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -33,23 +31,21 @@
                                         @foreach ($vans as $van)
                                             <tr>
                                                 <td>{{ $van->VanID }}</td>
-                                                <td>{{ $van->VanCapacity }}</td>
                                                 <td>{{ $van->NumberPlate }}</td>
-                                                <td>{{ $van->Longitude }}</td>
-                                                <td>{{ $van->Latitude }}</td>
-                                                <td>{{ $van->VanOperator }}</td>
-                                                <td>{{ $van->Driver }}</td>
+                                                <td>{{ $van->VanCapacity }}</td>
+                                                <td>{{ $van->operator->VanOperatorName ?? 'N/A' }}</td>
+                                                <td>{{ $van->driver->DriverName ?? 'N/A' }}</td>
                                                 <td>
-                                                    <a href="{{ route('drivers.show', $van->VanID) }}"
+                                                    <a href="{{ route('vans.show', $van->VanID) }}"
                                                         class="btn btn-info btn-sm">View</a>
-                                                    <a href="{{ route('drivers.edit', $van->VanID) }}"
+                                                    <a href="{{ route('vans.edit', $van->VanID) }}"
                                                         class="btn btn-primary btn-sm">Edit</a>
-                                                    <form action="{{ route('drivers.destroy', $van->VanID) }}"
+                                                    <form action="{{ route('vans.destroy', $van->VanID) }}"
                                                         method="POST" style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Are you sure you want to delete this driver?')">Delete</button>
+                                                            onclick="return confirm('Are you sure you want to delete this van?')">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

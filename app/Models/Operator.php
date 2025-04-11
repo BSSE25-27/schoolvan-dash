@@ -16,4 +16,8 @@ class Operator extends Model
         "PhoneNumber",
         "Email"
     ];
+    public function van()
+    {
+        return $this->hasOne(Van::class, 'VanOperatorID');
+    }
 }

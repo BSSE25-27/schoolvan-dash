@@ -8,9 +8,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <i class="ti ti-user fs-6"></i>
-                                <h5 class="card-title">0 Children</h5>
+                                <h5 class="card-title">{{ $totalChildren }} Children</h5>
 
-                                <a href="#" class="card-link">View All</a>
+                                <a href="{{ route('children.index') }}" class="card-link">View All</a>
                                 <a href="#" class="card-link">Delete All</a>
                             </div>
                         </div>
@@ -20,9 +20,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <i class="ti ti-user fs-6"></i>
-                                <h5 class="card-title">0 Drivers</h5>
+                                <h5 class="card-title">{{ $totalDrivers }} Drivers</h5>
 
-                                <a href="#" class="card-link">View All</a>
+                                <a href="{{ route('drivers.index') }}" class="card-link">View All</a>
                                 <a href="#" class="card-link">Delete All</a>
                             </div>
                         </div>
@@ -32,9 +32,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <i class="ti ti-user fs-6"></i>
-                                <h5 class="card-title">0 vans</h5>
+                                <h5 class="card-title">{{ $totalVans }}  Vans</h5>
 
-                                <a href="#" class="card-link">View All</a>
+                                <a href="{{ route('vans.index') }}" class="card-link">View All</a>
                                 <a href="#" class="card-link">Delete All</a>
                             </div>
                         </div>
