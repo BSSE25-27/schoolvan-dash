@@ -22,4 +22,24 @@ class ParentalController extends Controller
             return response()->json($parents);
         
     }
+
+    public function parentLogin(Request $request) {
+    $validated = $request->validate([
+        'ParentName' => 'required|string|max:255',
+        'Email' => 'required|email' // Make sure this matches your frontend field name
+    ]);
+
+    $parent = Parental::where('ParentName', $validated['ParentName'])
+        ->where('Email', $validated['Email']) // Using the validated data
+        ->first();
+
+    if (!$parent) {
+        return response()->json(['message' => 'Invalid credentials'], 401);
+    }
+
+    return response()->json([
+        'message' => 'Login successful',
+        'parent' => $parent,
+    ]);
+}
 }

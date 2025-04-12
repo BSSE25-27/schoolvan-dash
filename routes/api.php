@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/parents/{parents}', [ParentalController::class, 'show']);
 Route::get('/parents', [ParentalController::class, 'index']);
+Route::post('/parent-login', [ParentalController::class, 'parentLogin']);
