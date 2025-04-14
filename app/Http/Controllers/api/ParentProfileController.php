@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Controller\api\BaseApiController;
 use App\Models\Parental;
+use App\Models\Child;
 use Illuminate\Http\Request;
 
 class ParentProfileController extends Controller
@@ -33,5 +34,30 @@ class ParentProfileController extends Controller
             'phone_number' => $parent->PhoneNumber,
             'children' => $children
         ]);
+    }
+
+    public function getChildrenByParent(Request $request)
+    {
+        try {
+            $parentId = $request->validate([
+                'ParentID' => 'required|integer'
+            ]);
+
+            $children = Child::where('ParentId', $parentId)
+                ->get(['ChildID', 'ChildName', 'ParentId']);
+
+            return response()->json([
+                'status' => 'success',
+                'children' => $children
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    
+
     }
 }
