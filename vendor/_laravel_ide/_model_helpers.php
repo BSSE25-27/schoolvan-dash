@@ -933,6 +933,7 @@ namespace App\Models {
     /**
      * App\Models\Parental
      *
+     * @property string|null $api_key
      * @property string $Email
      * @property string $PhoneNumber
      * @property string $Address
@@ -942,6 +943,8 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property int $ParentID
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Child> $children
+     * @property-read int|null $children_count
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental whereParentid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental whereUpdatedAt($value)
@@ -951,6 +954,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental whereAddress($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental wherePhonenumber($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental whereEmail($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental whereApiKey($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Parental>|Parental query()

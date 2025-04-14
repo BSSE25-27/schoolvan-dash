@@ -18,5 +18,10 @@ class Parental extends Model
         "Address",
         "PhoneNumber",
         "Email",
+        "api_key",
     ];
+    public function children()
+    {
+        return $this->hasMany(Child::class, 'ParentId', 'ParentID');
+    }
 }

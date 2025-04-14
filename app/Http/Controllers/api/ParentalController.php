@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+// use App\Http\Controllers\api\BaseApiController;
 use Illuminate\Http\Request;
 use App\Models\Parental;
+use App\Models\Child;
+use Illuminate\Support\Str;
 
 class ParentalController extends Controller
 {
@@ -23,23 +26,46 @@ class ParentalController extends Controller
         
     }
 
-    public function parentLogin(Request $request) {
-    $validated = $request->validate([
-        'ParentName' => 'required|string|max:255',
-        'Email' => 'required|email' // Make sure this matches your frontend field name
-    ]);
+    public function parentLogin(Request $request)
+    {
+        $request->validate([
+            'Email' => 'required|email',
+            'ParentName' => 'required|string',
+        ]);
 
-    $parent = Parental::where('ParentName', $validated['ParentName'])
-        ->where('Email', $validated['Email']) // Using the validated data
-        ->first();
+        $parent = Parental::where('Email', $request->Email)
+            ->where('ParentName', $request->ParentName)
+            ->first();
 
-    if (!$parent) {
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        if (!$parent) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        // Generate API key if doesn't exist
+        if (empty($parent->api_key)) {
+            $parent->api_key = Str::random(64);
+            $parent->save();
+        }
+
+        return response()->json([
+            'message' => 'Login successful',
+            'api_key' => $parent->api_key,
+            'parent' => $parent,
+        ]);
     }
 
-    return response()->json([
-        'message' => 'Login successful',
-        'parent' => $parent,
-    ]);
-}
+    public function parentLogout(Request $request)
+    {
+        $apiKey = $request->header('X-API-KEY') ?? $request->input('api_key');
+        $parent = Parental::where('api_key', $apiKey)->first();
+        
+        if ($parent) {
+            $parent->api_key = null;
+            $parent->save();
+        }
+
+        return response()->json(['message' => 'Logged out successfully']);
+    }
+
+    
 }
