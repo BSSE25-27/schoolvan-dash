@@ -7,6 +7,7 @@ use App\Models\Van;
 use App\Models\Driver;
 use App\Models\Operator;
 
+
 class VanController extends Controller
 {
     // List vans with related driver and operator info

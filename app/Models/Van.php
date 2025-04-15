@@ -21,6 +21,10 @@ class Van extends Model
     return $this->belongsTo(Driver::class, 'DriverID', 'DriverID');
 }
 
+    // public function vanChildren () {
+    //     return $this->hasMany(VanChild::class, 'VanID', 'VanID');
+    // }
+
     public function operator()
     {
         return $this->belongsTo(Operator::class, 'VanOperatorID', 'VanOperatorID');

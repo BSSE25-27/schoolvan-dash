@@ -13,9 +13,7 @@ class Trip extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'origin' => 'array',
-        'destination' => 'array',
-        'van_location' => 'array',
+        
         'is_started' => 'boolean',
         'is_complete' => 'boolean',
     ];
