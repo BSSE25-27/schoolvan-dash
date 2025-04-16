@@ -16,4 +16,13 @@ class VanChild extends Model
         return $this->hasMany(VanChild::class, 'VanID', 'VanID');
     }
 
+    public function van()
+    {
+        return $this->belongsTo(Van::class, 'VanID', 'VanID');
+    }
+
+    public function child()
+    {
+        return $this->belongsTo(Child::class, 'ChildID', 'ChildID');
+    }
 }

@@ -1252,12 +1252,20 @@ namespace App\Models {
     /**
      * App\Models\Trip
      *
+     * @property string|null $trip_status
+     * @property datetime:H:i:s|null $end_time
+     * @property datetime:H:i:s|null $start_time
+     * @property \Illuminate\Support\Carbon|null $date
+     * @property string|null $current_longitude
+     * @property string|null $current_latitude
+     * @property string|null $end_longitude
+     * @property string|null $end_latitude
+     * @property string|null $start_longitude
+     * @property string|null $start_latitude
+     * @property string $type
+     * @property integer|null $VanID
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
-     * @property string|null $van_location
-     * @property string|null $destination_name
-     * @property string|null $destination
-     * @property string|null $origin
      * @property boolean $is_complete
      * @property boolean $is_started
      * @property int|null $driver_DriverID
@@ -1267,12 +1275,20 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDriverDriverid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereIsStarted($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereIsComplete($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereOrigin($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDestination($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDestinationName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereVanLocation($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereVanid($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereStartLatitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereStartLongitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereEndLatitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereEndLongitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereCurrentLatitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereCurrentLongitude($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereDate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereStartTime($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereEndTime($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip whereTripStatus($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Trip>|Trip query()
@@ -2198,8 +2214,20 @@ namespace App\Models {
     /**
      * App\Models\VanChild
      *
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property int|null $ChildID
+     * @property int|null $VanID
+     * @property int $id
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\VanChild> $vanChildren
      * @property-read int|null $vanChildren_count
+     * @property-read \App\Models\Van $van
+     * @property-read \App\Models\Child $child
+     * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild whereVanid($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild whereChildid($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<VanChild>|VanChild query()

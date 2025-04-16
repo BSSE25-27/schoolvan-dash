@@ -19,9 +19,13 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Origin</th>
-                                            <th>Destination</th>
-                                            <th>Van Location</th>
+                                            <th>Start Location</th>
+                                            <th>End Location</th>
+                                            <th>Current Location</th>
+                                            <th>Trip Date</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Trip Status</th>
                                             <th>Trip Started</th>
                                             <th>Trip Completed</th>
                                             <th>Actions</th>
@@ -31,17 +35,21 @@
                                         @foreach ($trips as $trip)
                                             <tr>
                                                 <td>
-                                                    Longitude: {{ $trip->origin['longitude'] ?? 'N/A' }}<br>
-                                                    Latitude: {{ $trip->origin['latitude'] ?? 'N/A' }}
+                                                    Latitude: {{ $trip->start_latitude ?? 'N/A' }}<br>
+                                                    Longitude: {{ $trip->start_longitude ?? 'N/A' }}
                                                 </td>
                                                 <td>
-                                                    Longitude: {{ $trip->destination['longitude'] ?? 'N/A' }}<br>
-                                                    Latitude: {{ $trip->destination['latitude'] ?? 'N/A' }}
+                                                    Latitude: {{ $trip->end_latitude ?? 'N/A' }}<br>
+                                                    Longitude: {{ $trip->end_longitude ?? 'N/A' }}
                                                 </td>
                                                 <td>
-                                                    Longitude: {{ $trip->van_location['longitude'] ?? 'N/A' }}<br>
-                                                    Latitude: {{ $trip->van_location['latitude'] ?? 'N/A' }}
+                                                    Latitude: {{ $trip->current_latitude ?? 'N/A' }}<br>
+                                                    Longitude: {{ $trip->current_longitude ?? 'N/A' }}
                                                 </td>
+                                                <td>{{ $trip->date ?? 'N/A' }}</td>
+                                                <td>{{ $trip->start_time ? $trip->start_time->format('H:i:s') : 'N/A' }}</td>
+                                                <td>{{ $trip->end_time ? $trip->end_time->format('H:i:s') : 'N/A' }}</td>
+                                                <td>{{ ucfirst($trip->trip_status ?? 'N/A') }}</td>
                                                 <td>{{ $trip->is_started ? 'Yes' : 'No' }}</td>
                                                 <td>{{ $trip->is_complete ? 'Yes' : 'No' }}</td>
                                                 <td>

@@ -9,6 +9,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\VanController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VanChildController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -53,6 +54,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('all-operators', OperatorController::class)
      ->names('operators')
      ->parameters(['all-operators' => 'operator']);
+
+    // Route::resource('all-van-children', VanChildController::class)
+    //  ->names('assignment')
+    //  ->parameters(['all-van-children' => 'van-child']);
+
+    
+    Route::get('/assignments', [VanChildController::class, 'index'])->name('assignment.index');
+    Route::post('/assignments/add', [VanChildController::class, 'addChildToVan'])->name('assignment.addChildToVan');
+    Route::delete('/assignments/{id}', [VanChildController::class, 'removeChildFromVan'])->name('assignment.remove');
+    Route::put('/assignments/{id}', [VanChildController::class, 'update'])->name('assignment.update');
+    Route::get('/assignments/{id}/edit', [VanChildController::class, 'edit'])->name('assignment.edit');
 });
 
 require __DIR__.'/auth.php';
