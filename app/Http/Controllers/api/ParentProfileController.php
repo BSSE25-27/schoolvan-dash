@@ -25,7 +25,7 @@ class ParentProfileController extends Controller
             return response()->json(['error' => 'Invalid API key'], 401);
         }
     
-        $children = $parent->children()->get(['ChildName']);
+        $children = $parent->children()->get(['ChildName','ChildID']);
     
 
         return response()->json([
