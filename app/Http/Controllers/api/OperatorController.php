@@ -30,6 +30,7 @@ class OperatorController extends Controller
         }
         return response()->json([
             'message' => 'Login successful',
+            'api_key' => $operator->api_key,
             'operator' => $operator,
         ]);
     }
