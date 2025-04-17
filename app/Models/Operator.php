@@ -14,7 +14,8 @@ class Operator extends Model
         "VanOperatorID",
         "VanOperatorName",
         "PhoneNumber",
-        "Email"
+        "Email",
+        "api_key",
     ];
     public function van()
     {
