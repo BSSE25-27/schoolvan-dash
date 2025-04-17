@@ -24,4 +24,8 @@ class Parental extends Model
     {
         return $this->hasMany(Child::class, 'ParentId', 'ParentID');
     }
+
+    // public function x(){
+    //      return $this->belongsToMany(Child::class, 'parent_child', 'ParentID', 'ChildID');
+    // }
 }
