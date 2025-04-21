@@ -100,19 +100,24 @@ public function getChildrenByOperator(Request $request, $operatorId)
     // Count the total number of children assigned to the operator
     $totalChildren = $children->count();
 
+    $vanDetails = $children->first()?->van;
+    $operatorDetails = $vanDetails?->operator;
+
     // Map the children data
     $mappedChildren = $children->map(function ($assignment) {
         return [
             'ChildName' => $assignment->child->ChildName,
             'Latitude' => $assignment->child->parent->Latitude ?? 'N/A',
             'Longitude' => $assignment->child->parent->Longitude ?? 'N/A',
-            'VanNumberPlate' => $assignment->van->NumberPlate ?? 'N/A',
-            'VanOperatorName' => $assignment->van->operator->VanOperatorName ?? 'N/A',
+            // 'VanNumberPlate' => $assignment->van->NumberPlate ?? 'N/A',
+            // 'VanOperatorName' => $assignment->van->operator->VanOperatorName ?? 'N/A',
         ];
     });
 
     // Return the response with the children data and the total count
     return response()->json([
+        'VanNumberPlate' => $vanDetails?->NumberPlate ?? 'N/A',
+        'VanOperatorName' => $operatorDetails?->VanOperatorName ?? 'N/A',
         'children' => $mappedChildren,
         'totalChildren' => $totalChildren,
     ]);
