@@ -87,4 +87,33 @@ public function edit($id)
 
     return view('assignment.edit', compact('assignment', 'vans', 'children'));
 }
-}
+
+public function getChildrenByOperator(Request $request, $operatorId)
+{
+    // Fetch children assigned to vans operated by the given operator
+    $children = VanChild::with(['child.parent', 'van.operator'])
+        ->whereHas('van.operator', function ($query) use ($operatorId) {
+            $query->where('VanOperatorID', $operatorId);
+        })
+        ->get();
+
+    // Count the total number of children assigned to the operator
+    $totalChildren = $children->count();
+
+    // Map the children data
+    $mappedChildren = $children->map(function ($assignment) {
+        return [
+            'ChildName' => $assignment->child->ChildName,
+            'Latitude' => $assignment->child->parent->Latitude ?? 'N/A',
+            'Longitude' => $assignment->child->parent->Longitude ?? 'N/A',
+            'VanNumberPlate' => $assignment->van->NumberPlate ?? 'N/A',
+            'VanOperatorName' => $assignment->van->operator->VanOperatorName ?? 'N/A',
+        ];
+    });
+
+    // Return the response with the children data and the total count
+    return response()->json([
+        'children' => $mappedChildren,
+        'totalChildren' => $totalChildren,
+    ]);
+}}
