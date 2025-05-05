@@ -20,6 +20,9 @@ Route::get('/parents', [ParentalController::class, 'index']);
 Route::post('/parent-login', [ParentalController::class, 'parentLogin']);
 Route::post('/operator-login', [OperatorController::class, 'operatorLogin']);
 
+Route::post('/verify-otp', [OperatorController::class, 'verifyOtp']);
+Route::post('/resend-otp', [OperatorController::class, 'resendOtp']);
+
 Route::group([], function() {
     Route::get('/parent-profile', [ParentProfileController::class, 'getProfile']);
     Route::post('/parent-logout', [ParentalController::class, 'parentLogout']);
