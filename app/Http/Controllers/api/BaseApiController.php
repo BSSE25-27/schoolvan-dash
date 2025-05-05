@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Parental;
 
+/**
+ * @group Starter Management
+ *
+ * APIs for managing the api starter information.
+ */
 class BaseApiController extends Controller
 {
     //

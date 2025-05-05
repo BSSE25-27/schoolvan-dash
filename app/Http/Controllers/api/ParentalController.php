@@ -9,6 +9,11 @@ use App\Models\Parental;
 use App\Models\Child;
 use Illuminate\Support\Str;
 
+/**
+ * @group Parent Management
+ *
+ * APIs for managing all parents.
+ */
 class ParentalController extends Controller
 {
  

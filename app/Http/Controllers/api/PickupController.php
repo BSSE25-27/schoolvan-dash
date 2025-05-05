@@ -10,6 +10,11 @@ use App\Models\Operator;
 use App\Models\Child;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @group Pickup Management
+ *
+ * APIs for managing pickup information
+ */
 class PickupController extends Controller
 {
     //

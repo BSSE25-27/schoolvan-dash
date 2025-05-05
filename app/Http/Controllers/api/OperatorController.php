@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Operator;
 
+
+/**
+ * @group Operator Auth management
+ *
+ * APIs for managing van operator authentication
+ */
 class OperatorController extends Controller
 {
     //

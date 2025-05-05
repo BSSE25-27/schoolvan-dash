@@ -8,6 +8,12 @@ use App\Models\Parental;
 use App\Models\Child;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Profile Management
+ *
+ * APIs for managing parent profile information.
+ */
 class ParentProfileController extends Controller
 {
     //
