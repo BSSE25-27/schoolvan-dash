@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id("ParentID");
             $table->timestamps();
             $table->string("ParentName");
-            $table->decimal("Longitude");
-            $table->decimal("Latitude");
+            $table->decimal("Longitude", 9, 6);
+            $table->decimal("Latitude", 8, 6);
             $table->text("Address");
             $table->string("PhoneNumber");
             $table->string("Email")-> unique();
