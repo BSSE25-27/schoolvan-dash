@@ -3,13 +3,22 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e392a3cf5661cd851923f39345f71531dc8c505e',
+        'reference' => '6da125f770c0ee55e3c796b64aaccf9f05fe0bc3',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'africastalking/africastalking' => array(
+            'pretty_version' => 'v3.0.2',
+            'version' => '3.0.2.0',
+            'reference' => '8345423ee70b07b36cedcce61c85c9bc679e3666',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../africastalking/africastalking',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'blade-ui-kit/blade-heroicons' => array(
             'pretty_version' => '2.6.0',
             'version' => '2.6.0.0',
@@ -433,7 +442,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e392a3cf5661cd851923f39345f71531dc8c505e',
+            'reference' => '6da125f770c0ee55e3c796b64aaccf9f05fe0bc3',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

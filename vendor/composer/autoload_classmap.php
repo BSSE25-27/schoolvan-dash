@@ -6,6 +6,15 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AfricasTalking\\SDK\\AfricasTalking' => $vendorDir . '/africastalking/africastalking/src/AfricasTalking.php',
+    'AfricasTalking\\SDK\\Airtime' => $vendorDir . '/africastalking/africastalking/src/Airtime.php',
+    'AfricasTalking\\SDK\\Application' => $vendorDir . '/africastalking/africastalking/src/Application.php',
+    'AfricasTalking\\SDK\\Content' => $vendorDir . '/africastalking/africastalking/src/Content.php',
+    'AfricasTalking\\SDK\\MobileData' => $vendorDir . '/africastalking/africastalking/src/MobileData.php',
+    'AfricasTalking\\SDK\\SMS' => $vendorDir . '/africastalking/africastalking/src/SMS.php',
+    'AfricasTalking\\SDK\\Service' => $vendorDir . '/africastalking/africastalking/src/Service.php',
+    'AfricasTalking\\SDK\\Token' => $vendorDir . '/africastalking/africastalking/src/Token.php',
+    'AfricasTalking\\SDK\\Voice' => $vendorDir . '/africastalking/africastalking/src/Voice.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
     'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => $baseDir . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
