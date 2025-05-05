@@ -8,6 +8,7 @@ use App\Models\Operator;
 use Illuminate\Support\Facades\Cache;
 use AfricasTalking\SDK\AfricasTalking;
 use Exception;
+use App\Utilities\PhoneNumberUtility;
 
 
 /**
@@ -44,7 +45,8 @@ class OperatorController extends Controller
             'phone_number' => 'required|string',
             'otp' => 'required|digits:5',
         ]);
-
+    
+        // Use original phone number format for cache lookup
         $key = 'otp_' . $request->phone_number;
         $storedOtp = Cache::get($key);
 
@@ -70,37 +72,41 @@ class OperatorController extends Controller
         ]);
     }
 
+        
         public function resendOtp(Request $request)
     {
         $request->validate([
             'phone_number' => 'required|string',
         ]);
-    
+
+        // Format phone number for Africa's Talking
+        $formattedPhone = PhoneNumberUtility::formatForSms($request->phone_number);
+
         // Generate 5-digit OTP
         $otp = str_pad(random_int(0, 99999), 5, '0', STR_PAD_LEFT);
         $expiresAt = now()->addMinutes(5);
-    
-        // Store OTP in cache
+
+        // Store OTP with original phone number (not formatted)
         Cache::put('otp_' . $request->phone_number, [
             'code' => $otp,
             'expires_at' => $expiresAt
         ], $expiresAt);
-    
+
         // Initialize Africa's Talking
-        $username = env('AT_USERNAME'); // Your Africa's Talking username
-        $apiKey = env('AT_KEY');    // Your Africa's Talking API key
+        $username = env('AT_USERNAME');
+        $apiKey = env('AT_KEY');
         
         $AT = new AfricasTalking($username, $apiKey);
         $sms = $AT->sms();
-    
+
         try {
-            // Send SMS via Africa's Talking
+            // Send SMS to formatted phone number
             $result = $sms->send([
-                'to'      => $request->phone_number,
+                'to'      => $formattedPhone,
                 'message' => "Your OTP code is: $otp. Valid for 5 minutes.",
                 // 'from'    => env('AFRICASTALKING_SENDER_ID', 'YOUR_SENDER_ID')
             ]);
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'OTP resent successfully'
