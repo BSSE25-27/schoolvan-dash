@@ -6,6 +6,7 @@ use App\Http\Controllers\api\ParentalController;
 use App\Http\Controllers\api\ParentProfileController;
 use App\Http\Controllers\api\OperatorController;
 use App\Http\Controllers\api\PickupController;
+use App\Http\Controllers\api\VanLocationUpdateController;
 use App\Http\Controllers\VanChildController;
 use App\Models\Parental;
 use App\Models\Operator;
@@ -34,4 +35,6 @@ Route::group([], function() {
 Route::post('/verify-pickup', [PickupController::class, 'verifyPickup']);
 
 Route::get('/operators/{operatorId}/children', [VanChildController::class, 'getChildrenByOperator']);
+
+Route::post('/location-update', [VanLocationUpdateController::class, 'updateLocation']);
 

@@ -5,6 +5,7 @@ use App\Models\VanChild;
 use App\Models\Van;
 use App\Models\Child;
 use Illuminate\Http\Request;
+use App\Events\VanLocationUpdated;
 
 class VanChildController extends Controller
 {
@@ -121,4 +122,6 @@ public function getChildrenByOperator(Request $request, $operatorId)
         'children' => $mappedChildren,
         'totalChildren' => $totalChildren,
     ]);
-}}
+}
+
+}

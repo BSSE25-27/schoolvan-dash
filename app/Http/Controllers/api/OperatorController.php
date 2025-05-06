@@ -44,20 +44,20 @@ class OperatorController extends Controller
             'phone_number' => 'required|string',
         ]);
 
-        // Format phone number for Africa's Talking
+        
         $formattedPhone = PhoneNumberUtility::formatForSms($request->phone_number);
 
-        // Generate 5-digit OTP
+        
         $otp = str_pad(random_int(0, 99999), 5, '0', STR_PAD_LEFT);
         $expiresAt = now()->addMinutes(5);
 
-        // Store OTP with original phone number (not formatted)
+        
         Cache::put('otp_' . $request->phone_number, [
             'code' => $otp,
             'expires_at' => $expiresAt
         ], $expiresAt);
 
-        // Initialize Africa's Talking
+        
         $username = env('AT_USERNAME');
         $apiKey = env('AT_KEY');
         
@@ -65,7 +65,7 @@ class OperatorController extends Controller
         $sms = $AT->sms();
 
         try {
-            // Send SMS to formatted phone number
+            
             $result = $sms->send([
                 'to'      => $formattedPhone,
                 'message' => "Your OTP code is: $otp. Valid for 5 minutes.",
