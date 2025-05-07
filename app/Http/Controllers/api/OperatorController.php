@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use AfricasTalking\SDK\AfricasTalking;
 use Exception;
 use App\Utilities\PhoneNumberUtility;
+use Twilio\Rest\Client;
 
 
 /**
@@ -39,39 +40,36 @@ class OperatorController extends Controller
             'operator' => $operator,
         ]);
     }   
-    public function resendOtp(Request $request){
+    public function resendOtp(Request $request) {
         $request->validate([
             'phone_number' => 'required|string',
         ]);
-
-        
+    
         $formattedPhone = PhoneNumberUtility::formatForSms($request->phone_number);
-
-        
+    
         $otp = str_pad(random_int(0, 99999), 5, '0', STR_PAD_LEFT);
         $expiresAt = now()->addMinutes(5);
-
-        
+    
         Cache::put('otp_' . $request->phone_number, [
             'code' => $otp,
             'expires_at' => $expiresAt
         ], $expiresAt);
-
-        
-        $username = env('AT_USERNAME');
-        $apiKey = env('AT_KEY');
-        
-        $AT = new AfricasTalking($username, $apiKey);
-        $sms = $AT->sms();
-
+    
+        $accountSid = env('TWILIO_ACCOUNT_SID');
+        $authToken = env('TWILIO_AUTH_TOKEN');
+        $twilioNumber = env('TWILIO_PHONE_NUMBER');
+    
         try {
+            $client = new Client($accountSid, $authToken);
             
-            $result = $sms->send([
-                'to'      => $formattedPhone,
-                'message' => "Your OTP code is: $otp. Valid for 5 minutes.",
-                // 'from'    => env('AFRICASTALKING_SENDER_ID', 'YOUR_SENDER_ID')
-            ]);
-
+            $message = $client->messages->create(
+                $formattedPhone,
+                [
+                    'from' => $twilioNumber,
+                    'body' => "Your OTP code is: $otp. Valid for 5 minutes."
+                ]
+            );
+    
             return response()->json([
                 'success' => true,
                 'message' => 'OTP resent successfully'
@@ -83,22 +81,23 @@ class OperatorController extends Controller
             ], 500);
         }
     }
+    
     public function verifyOtp(Request $request)
     {
         Log::info("Verify OTP Request: " . json_encode($request->all()));
-
+    
         $validated = $request->validate([
             'phone_number' => 'required|string',
             'otp' => 'required|digits:5',
         ]);
-
+    
         $originalPhone = $request->phone_number;
         $key = 'otp_' . $originalPhone;
         $storedOtp = Cache::get($key);
-
+    
         Log::debug("Cache Key: $key");
         Log::debug("Stored OTP: " . json_encode($storedOtp));
-
+    
         // Debug all cache keys (temporarily)
         if (app()->environment('local')) {
             $allKeys = [];
@@ -108,7 +107,7 @@ class OperatorController extends Controller
             }
             Log::debug("All cache keys: " . json_encode($allKeys));
         }
-
+    
         if (!$storedOtp) {
             Log::warning("No OTP found for phone: $originalPhone");
             return response()->json([
@@ -116,7 +115,7 @@ class OperatorController extends Controller
                 'message' => 'Invalid OTP code or expired'
             ], 400);
         }
-
+    
         if ($storedOtp['code'] != $request->otp) {
             Log::warning("OTP mismatch for $originalPhone");
             return response()->json([
@@ -126,7 +125,7 @@ class OperatorController extends Controller
                 'received' => $request->otp
             ], 400);
         }
-
+    
         if (now()->gt($storedOtp['expires_at'])) {
             Log::warning("Expired OTP for $originalPhone");
             return response()->json([
@@ -135,15 +134,16 @@ class OperatorController extends Controller
                 'expired_at' => $storedOtp['expires_at']
             ], 400);
         }
-
+    
         Cache::forget($key);
         Log::info("Successful verification for $originalPhone");
-
+    
         return response()->json([
             'success' => true,
             'message' => 'OTP verified successfully'
         ]);
     }
+    
     public function sendOtp(Request $request) {
         $request->validate(['phone_number' => 'required|string']);
         
