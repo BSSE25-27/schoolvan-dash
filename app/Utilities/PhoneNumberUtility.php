@@ -11,7 +11,7 @@ class PhoneNumberUtility
         
         // If starts with 0, replace with +256
         if (strlen($cleaned) > 9 && $cleaned[0] === '0') {
-            return '256' . substr($cleaned, 1);
+            return '+256' . substr($cleaned, 1);
         }
         
         // If starts with 256 without +, add +
