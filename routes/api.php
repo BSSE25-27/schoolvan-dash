@@ -29,6 +29,7 @@ Route::group([], function() {
     Route::get('/parent-profile', [ParentProfileController::class, 'getProfile']);
     Route::post('/parent-logout', [ParentalController::class, 'parentLogout']);
     Route::get('/parent-children', [ParentProfileController::class, 'getChildrenByParent']);
+    Route::get('/child-location', [ParentalController::class, 'getChildrenLocation']);
     
 });
 

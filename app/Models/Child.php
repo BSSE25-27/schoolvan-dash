@@ -17,6 +17,10 @@ class Child extends Model
         return $this->belongsTo(Parental::class, 'ParentId', 'ParentID');
     }
 
+    // public function childVan() {
+    //     return $this->hasOne(VanChild::class, 'ChildID', 'ChildID');
+    // }
+
     // public function x(){
     //     return $this->belongsToMany(Parental::class, 'parent_child', 'ChildID', 'ParentID');
     // }
