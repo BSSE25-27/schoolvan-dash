@@ -96,7 +96,7 @@ class ParentalController extends Controller
             ->where('trip_status', 'ongoing')
             ->first();
 
-        $childLocations[] = [
+        $childLocation[] = [
             'ChildID' => $child->ChildID,
             'ChildName' => $child->ChildName,
             'VanID' => null,
