@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dropColumn('van_location');
 
             $table->unsignedBigInteger('VanID')->nullable();
-            $table->string('type')->default('PICKUP')->nullable();
+            $table->string('type')->nullable()->default('PICKUP');
             $table->string('start_latitude')->nullable();
             $table->string('start_longitude')->nullable();
             $table->string('end_latitude')->nullable();
