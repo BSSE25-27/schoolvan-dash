@@ -108,6 +108,7 @@ public function getChildrenByOperator(Request $request, $operatorId)
     $mappedChildren = $children->map(function ($assignment) {
         return [
             'ChildName' => $assignment->child->ChildName,
+            'ChildID' => $assignment->child->ChildID,
             'Latitude' => $assignment->child->parent->Latitude ?? 'N/A',
             'Longitude' => $assignment->child->parent->Longitude ?? 'N/A',
             // 'VanNumberPlate' => $assignment->van->NumberPlate ?? 'N/A',
